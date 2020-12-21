@@ -1,0 +1,58 @@
+from random import *
+
+Name = input("Please Enter Your Name Here: ")
+input("Welcom to the game. To begin press enter...")
+print("")
+points = 0
+cpu_point = 0
+moves = ["Rock", "Paper", "Scissors"]
+
+while True:
+    #     random_moves=randint(0,2)
+    cpu_moves = choice(moves)
+    # print(cpu_moves)
+    player = input("Please select your move :").lower()
+    while player not in moves:
+        player = input("Please enter valid moves from Rock, Paper or Scissors :")
+
+    print("")
+    print("Your choice is ", player)
+    print("Cpu choice is ", cpu_moves)
+    print("")
+
+    if player == cpu_moves:
+        print("It is tie ! ")
+    elif player == "Rock":
+        if cpu_moves == "Scissors":
+            print("You win great")
+            points += 1
+        elif cpu_moves == "Paper":
+            print("You lose !! ")
+            cpu_point += 1
+    elif player == "Paper":
+        if cpu_moves == "Rock":
+            print("You win great")
+            points += 1
+        elif cpu_moves == "Scissors":
+            print("You lose !! ")
+            cpu_point += 1
+    elif player == "Scissors":
+        if cpu_moves == "Paper":
+            print("You win great ")
+            points += 1
+        elif cpu_moves == "Rock":
+            print("You lose !! ")
+            cpu_point += 1
+
+    print("")
+    print(Name,"\'s", "total score is ", points)
+    print("Cpu total score is ", cpu_point)
+    print("")
+
+    Play = input("Do you want to play again ? press Y / N :-")
+    print("")
+    while Play not in ["y", "n"]:
+        Play = input("Please press valid key")
+    if Play == "n":
+        print("Thanks For Playing ")
+        break
