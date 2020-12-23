@@ -1,0 +1,77 @@
+"""Rolling a Dice......"""
+
+print("welcome to rolling a dice game ! ")
+input("Press enter to proceed.")
+
+
+import random
+
+d1 = [1, 2, 3, 4, 5, 6, ]
+# d2=[1,2,3,4,5,6,]
+
+# print(dice1)
+# dice2=random.choice(d2)
+
+# print(dice1,dice2)
+while True:
+    input("press enter to roll a dice.")
+    print(""" Now Rolling a Dice.................................""")
+    dice = random.choice(d1)
+    if dice == 1:
+        print("""
+             -----
+            |     |   
+            |  0  |
+            |     |
+             -----   
+            """)
+    elif dice == 2:
+        print("""
+             -----
+            | 0   |   
+            |     |
+            |    0|
+             -----   
+            """)
+    elif dice == 3:
+        print("""
+             -----
+            |     |   
+            |0 0 0|
+            |     |
+             -----   
+            """)
+    elif dice == 4:
+        print("""
+             -----
+            |0   0|   
+            |     |
+            |0   0|
+             -----   
+            """)
+    elif dice == 5:
+        print("""
+             -----
+            |0   0|   
+            |  0  |
+            |0   0|
+             -----   
+            """)
+    elif dice == 6:
+        print("""
+             -----
+            |0   0|   
+            |0   0|
+            |0   0|
+             -----   
+            """)
+    roll = input("Do you want to roll it again ? Y/N :")
+    while roll not in ['y', 'n']:
+        input("Please select correct action: ")
+    if roll == "n":
+        print("Thanks for playing ....")
+        break
+
+"""
+------------------------------------------------------------------------------------------------------------------------
+"""
