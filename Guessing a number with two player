@@ -1,0 +1,69 @@
+# Two player guessing game with some hint - guessed number is samller or larger to the original one.
+
+import random
+num1=random.randint(1,10)
+print("Number 1 is ",num1)
+num2=random.randint(1,10)
+print("Number 2 is",num2)
+
+
+# Player1=input("Please enter your name: ")
+# Player2=input("Please enter your name: ")
+
+
+print("\n")
+player1=0
+player2=0
+
+print("Player1 it is your chance to guess the number")
+print("\n")
+
+for i in range(5):
+    guess1=int(input("Please enter your guess here :"))
+    if guess1>num1:
+        print("Your guess is larger than orignal number.")
+        player1+=1
+    elif guess1<num1:
+        print("Your guess is smaller than original number.")
+        player1+=1
+    elif guess1==num1:
+        print("Great you guess the correct number.")
+        player1+=1
+        break
+# print(f"Total numbers of attempts you took to guess correct numbeer is :",player1)
+
+
+print("\n\n")
+print("Player2 it is your chance to guess the number")
+print("\n")
+
+for i in range(5):
+    guess2=int(input("Please enter your guess here :"))
+    if guess2>num2:
+        print("Your guess is larger than orignal number.")
+        player2+=1
+    elif guess2<num2:
+        print("Your guess is smaller than original number.")
+        player2+=1
+    elif guess2==num2:
+        print("Great you guess the correct number.")
+        player2+=1
+        break
+# print(f"Total numbers of attempts you took to guess correct numbeer is :",player2)
+
+
+
+print("\n")
+if guess1==num1:
+    print("Total numbers of attempts Player1 took to guess correct numbeer is :",player1)
+else:print("Player1 took all 5 attempts but still not guess the correct number")
+    
+if guess2==num2:print("Total numbers of attempts Player2 took to guess correct number is :",player2)
+else: print("Player2 took all 5 attempts but still not guess the correct number")
+    
+print("\n")    
+if player1<player2:
+    print("Player 1 is winner")
+elif player1==player2: print("it is tie ! you both guess the number with same numbers of attempts or No correct guessing by both player.")
+else:
+    print("Player 2 is winner")
