@@ -1,0 +1,64 @@
+print("Program that calculate basic equations")
+print("""
+        Equations:
+        Additions = +
+        Subtraction = -
+        Multiplication = *
+        Division = /
+        Power = **
+        Square root= sqrt
+        Percentage = 100%
+        """)
+
+from math import *
+
+# x=sqrt(25)
+# print(x)
+# a=int(input("Enter first values here :"))
+# b=int(input("Enter second value here :"))
+equation=input("Enter equation :")
+
+if equation=="+":
+    def add(a,b):
+        return a+b
+    a=int(input("Enter values of a :"))
+    b=int(input("Enter values of b :"))
+    print("The addition of ",a,"&",b,"is :" ,add(a,b))
+elif equation=="-":
+    def sub(a,b):
+        return a-b
+    a = int(input("Enter values of a :"))
+    b = int(input("Enter values of b :"))
+    print("The subtraction of ",a,"&",b,"is :",sub(a,b))
+
+elif equation=="*":
+    def mult(a,b):
+        return a*b
+    a = int(input("Enter values of a :"))
+    b = int(input("Enter values of b :"))
+    print("The multiplication of ",a,"&",b,"is :",mult(a,b))
+elif equation=="/":
+    def div(a,b):
+        return a/b
+    a = int(input("Enter values of a :"))
+    b = int(input("Enter values of b :"))
+    print("The divison of",a,"&",b,"is :",div(a,b))
+elif equation=="**":
+    def pow(a,b):
+        return a**b
+    a = int(input("Enter values of a :"))
+    power = int(input("Enter power values for a:"))
+    print("The power of",a,"is: ",pow(a,power))
+elif equation=="sqrt":
+    def squrt(a):
+        x=sqrt(a)
+        return x
+    a=int(input("Enter a number:"))
+    print("Square root of",a,"is :",squrt(a))
+elif equation=="100%":
+    def perc(a,b):
+        return (a*b)/100
+    a=int(input("Please enter principle amount :"))
+    b=int(input("Please enter percent age:"))
+    print(b,"Percent of",a,"is: ",perc(a,b))
+
