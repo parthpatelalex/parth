@@ -1,0 +1,29 @@
+# Welcome to mad libs game. Here you have fill the blanks by random words and she how funny it will look like. Enjoy
+
+
+adjective=input("Please enter an adjective here:")
+nationality=input("Please enter a nationality here:")
+person=input("Please enter a person name here:")
+noun=input("Please enter a noun here:")
+adjective1=input("Please enter an adjective here:")
+noun1=input("Please enter a noun here:")
+adjective2=input("Please enter an adjective here:")
+adjective3=input("Please enter an adjective here:")
+plural_noun=input("Please enter a plural noun here:")
+noun2=input("Please enter a noun here:")
+number=input("Please enter a number here:")
+shapes=input("Please enter a shapes here:")
+food=input("Please enter food name here:")
+food1=input("Please enter a food name here:")
+number1=input("Please enter a number here:")
+
+madlibs=(f"""**************************************************************************
+             Pizza was invented by a {adjective} {nationality} chef named {person}.To 
+             make a pizza, you need to take a lump of {noun}, and make a thin,round 
+             {adjective1} {noun1}. Then you over it with {adjective2} {adjective3}
+             cheese, and fresh chopped {plural_noun}. next you have to bake it in a
+             very hot {noun2}. When it is done, cut it into {number} {shapes}. Some
+             kids like {food} pizza the best, but my favorite is the {food1} piza. 
+             If i could,i would eat pizza {number1} times a day
+             ***************************************************************************""")
+print(madlibs)
