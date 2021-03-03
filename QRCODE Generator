@@ -1,0 +1,10 @@
+# Simple QRCODE generator 
+
+
+import pyqrcode
+from pyqrcode import QRCode
+import png
+name=input("Name of URL")
+link=input("Please enter a link here:")
+URL=pyqrcode.create(link)
+URL.png(f"{name}.png",scale=6.5)
