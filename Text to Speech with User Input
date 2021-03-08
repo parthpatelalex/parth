@@ -1,0 +1,7 @@
+import pyttsx3
+
+
+machine=pyttsx3.init()
+text=input("please enter your text here :")
+machine.say(text)    
+machine.runAndWait()
