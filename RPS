@@ -1,7 +1,7 @@
 from random import *
 
 Name = input("Please Enter Your Name Here: ")
-input("Welcom to the game. To begin press enter...")
+input("Welcom to the game. To begin press enter... Your have to type whole the move... !")
 print("")
 points = 0
 cpu_point = 0
