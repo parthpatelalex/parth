@@ -1,0 +1,201 @@
+import pandas as pd
+import numpy as np
+
+CData = pd.read_csv("E:\quikr_car.csv")
+
+CData.head()
+
+CData.shape
+
+CData.info()
+
+CData['name'].unique()
+
+# Preprocessing
+
+backup = CData.copy()
+
+CData['year'].str.isnumeric() 
+# It will convert into boolean and show the Numeric as True and string as False 
+# so here we need to convert all string data into numeric
+CData=CData[CData['year'].str.isnumeric()] # Here we store the only numeric data 
+
+CData['year']=CData['year'].astype(int) # TO convert object type into int
+
+CData['year'].dtype
+
+# CData['Price']
+CData=CData[CData['Price']!="Ask For Price"] # Here we remove the 'Ask For Price value from column' and store the data
+
+CData['Price']
+
+# Now split the "," from the data and convert it into int
+
+
+CData["Price"]=CData['Price'].str.replace(",","").astype(int)
+
+CData['Price']
+
+CData['kms_driven'] # Need to remove string, space and , from the data and convert it into int
+
+
+CData['kms_driven'] = CData['kms_driven'].str.split(' ').str.get(0).str.replace(",","")
+
+CData['kms_driven'] # Kms removed from the value
+
+CData = CData[CData['kms_driven'].str.isnumeric()] # Storing numeric values in data
+
+CData['kms_driven'] = CData['kms_driven'].astype(int) # COnverting a Data as int
+
+CData.info()
+
+CData = CData[~CData['fuel_type'].isna()] # Checking the NAN value and storing the value other than NAN
+
+CData.info()
+
+CData['name'] # Removing extra strings from Name.
+
+CData['name'] = CData['name'].str.split(" ").str.slice(0,3).str.join(' ') 
+#  we remove extra string values and join the required values
+
+CData['name'] # Here we  can see the indexing is not in proper way so we will reset the indexes
+
+CData = CData.reset_index(drop = True)
+CData.head()
+
+CData.describe()
+
+#  checking the outliers
+
+import matplotlib.pyplot as plt
+plt.figure(figsize=(11,6))
+plt.boxplot(CData['Price'])
+plt.title("Outlier in Price Data")
+plt.show()
+
+
+print("")
+
+CData[CData['Price']>4e6]
+
+#Remove the outlier
+
+CData = CData[CData['Price']<4e6].reset_index(drop=True)
+
+CData[CData['Price']>4e6] # Now no outlier in price data
+
+# Pair plot using seaborn
+import seaborn as sns
+sns.pairplot(CData)
+
+# Visualization of price and kms using seaborn
+sns.set_theme()
+# plt.figure(figsize=(20,6))
+sns.relplot(x = CData['Price'],y = CData['kms_driven'],marker="o")
+
+
+# Price of used car 
+plt.figure(figsize=(20,6))
+
+CData['Price'].plot(label="Price in Lacs",color='red')
+plt.ylabel("Price of Used Car")
+plt.legend()
+plt.show()
+
+# Value counts of fuel type
+CData['fuel_type'].value_counts()
+
+# Store the clean data into csv file
+
+CData.to_csv("Cleaned Car.csv")
+
+# Model building
+
+x_feat = CData.drop(columns=['Price'])
+x_feat.shape
+
+target = CData['Price']
+target.shape
+
+# Import train_test_split for assigning a data for training purpose
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test = train_test_split(x_feat,target,test_size =0.2,random_state=0)
+
+# import Linear Model
+from sklearn.linear_model import LinearRegression
+# import r2 score for accuracy 
+from sklearn.metrics import r2_score
+# OneHotEncoder to convert string data into categorical
+from sklearn.preprocessing import OneHotEncoder
+# TO prepared a columns of categorical data that we  convert by using OneHotEncoder
+from sklearn.compose import make_column_transformer
+from sklearn.pipeline import make_pipeline
+
+
+
+Oh = OneHotEncoder()
+Oh.fit(x_feat[['name','company','fuel_type']])
+
+Column_Tran = make_column_transformer((OneHotEncoder(categories = Oh.categories_),['name','company',"fuel_type"]),
+                                      remainder="passthrough")
+
+# Builed an empty model
+model = LinearRegression()
+
+#Fit the data
+pipe = make_pipeline(Column_Tran,model)
+
+pipe.fit(x_train,y_train)
+
+Prediction = pipe.predict(x_test)
+
+# Comparison between Actual price and predicted price of used car of first 160 index
+
+plt.figure(figsize=(20,6))
+
+CData['Price'].plot(label="Actual Price in Lacs",color='red')
+plt.plot(Prediction,label="Predicted Price in Lacs",color='yellow')
+
+plt.ylabel("Price of Used Car in Lacs")
+plt.legend()
+plt.show()
+
+
+print("-------------------------------------------------------------------------------------------------------------------")
+
+plt.figure(figsize=(20,6))
+
+plt.plot(Prediction,label="Predicted Price",color='red')
+plt.ylabel("Price of Used Car in Lacs")
+plt.legend()
+plt.show()
+
+# R2 score 
+r2_score(y_test,Prediction)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
